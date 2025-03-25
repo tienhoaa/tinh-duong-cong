@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tính Toán Đường Cong</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            border-radius: 5px 5px 0 0;
+        }
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 10px 16px;
+            transition: 0.3s;
+            font-size: 16px;
+        }
+        .tab button:hover {
+            background-color: #ddd;
+        }
+        .tab button.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-top: none;
+            border-radius: 0 0 5px 5px;
+            background-color: white;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: inline-block;
+            width: 150px;
+            font-weight: bold;
+        }
+        input {
+            padding: 8px;
+            width: 100px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .angle-input {
+            display: flex;
+            align-items: center;
+        }
+        .angle-input input {
+            width: 60px;
+            margin-right: 5px;
+        }
+        .angle-input span {
+            margin-right: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9f7ef;
+            border-radius: 4px;
+            display: none;
+        }
+        .result h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TÍNH TOÁN THÔNG SỐ ĐƯỜNG CONG</h1>
+        
+        <div class="tab">
+            <button class="tablinks active" onclick="openTab(event, 'tabP')">Tính từ P</button>
+            <button class="tablinks" onclick="openTab(event, 'tabT')">Tính từ T</button>
+            <button class="tablinks" onclick="openTab(event, 'tabR')">Tính từ R</button>
+        </div>
+        
+        <!-- Tab tính từ P -->
+        <div id="tabP" class="tabcontent" style="display: block;">
+            <h2>Tính toán khi biết P</h2>
+            <div class="input-group">
+                <label for="pValue">Giá trị P:</label>
+                <input type="number" id="pValue" step="0.01" value="0.33">
+            </div>
+            <div class="input-group">
+                <label>Góc α:</label>
+                <div class="angle-input">
+                    <input type="number" id="pDegrees" value="1" min="0" max="360">°
+                    <input type="number" id="pMinutes" value="21" min="0" max="59">'
+                    <input type="number" id="pSeconds" value="1" min="0" max="59">"
+                </div>
+            </div>
+            <button onclick="calculateFromP()">Tính Toán</button>
+            
+            <div id="pResult" class="result">
+                <h3>Kết Quả Tính Toán</h3>
+                <table>
+                    <tr>
+                        <th>Thông số</th>
+                        <th>Giá trị</th>
+                    </tr>
+                    <tr>
+                        <td>Bán kính R</td>
+                        <td id="pRadius"></td>
+                    </tr>
+                    <tr>
+                        <td>Độ dài tiếp tuyến T</td>
+                        <td id="pTangent"></td>
+                    </tr>
+                    <tr>
+                        <td>Chiều dài đường cong K</td>
+                        <td id="pCurveLength"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Tab tính từ T -->
+        <div id="tabT" class="tabcontent">
+            <h2>Tính toán khi biết T</h2>
+            <div class="input-group">
+                <label for="tValue">Giá trị T:</label>
+                <input type="number" id="tValue" step="0.01" value="8.65">
+            </div>
+            <div class="input-group">
+                <label>Góc α:</label>
+                <div class="angle-input">
+                    <input type="number" id="tDegrees" value="6" min="0" max="360">°
+                    <input type="number" id="tMinutes" value="33" min="0" max="59">'
+                    <input type="number" id="tSeconds" value="47" min="0" max="59">"
+                </div>
+            </div>
+            <button onclick="calculateFromT()">Tính Toán</button>
+            
+            <div id="tResult" class="result">
+                <h3>Kết Quả Tính Toán</h3>
+                <table>
+                    <tr>
+                        <th>Thông số</th>
+                        <th>Giá trị</th>
+                    </tr>
+                    <tr>
+                        <td>Bán kính R</td>
+                        <td id="tRadius"></td>
+                    </tr>
+                    <tr>
+                        <td>Độ dài phân cự P</td>
+                        <td id="tPolar"></td>
+                    </tr>
+                    <tr>
+                        <td>Chiều dài đường cong K</td>
+                        <td id="tCurveLength"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Tab tính từ R -->
+        <div id="tabR" class="tabcontent">
+            <h2>Tính toán khi biết R</h2>
+            <div class="input-group">
+                <label for="rValue">Giá trị R:</label>
+                <input type="number" id="rValue" step="0.01" value="20">
+            </div>
+            <div class="input-group">
+                <label>Góc α:</label>
+                <div class="angle-input">
+                    <input type="number" id="rDegrees" value="1" min="0" max="360">°
+                    <input type="number" id="rMinutes" value="21" min="0" max="59">'
+                    <input type="number" id="rSeconds" value="1" min="0" max="59">"
+                </div>
+            </div>
+            <button onclick="calculateFromR()">Tính Toán</button>
+            
+            <div id="rResult" class="result">
+                <h3>Kết Quả Tính Toán</h3>
+                <table>
+                    <tr>
+                        <th>Thông số</th>
+                        <th>Giá trị</th>
+                    </tr>
+                    <tr>
+                        <td>Độ dài phân cự P</td>
+                        <td id="rPolar"></td>
+                    </tr>
+                    <tr>
+                        <td>Độ dài tiếp tuyến T</td>
+                        <td id="rTangent"></td>
+                    </tr>
+                    <tr>
+                        <td>Chiều dài đường cong K</td>
+                        <td id="rCurveLength"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        function degreesToRadians(degrees, minutes, seconds) {
+            const decimalDegrees = degrees + minutes/60 + seconds/3600;
+            return decimalDegrees * Math.PI / 180;
+        }
+
+        function validateAngleInput(degrees, minutes, seconds) {
+            if (degrees < 0 || degrees > 360) {
+                alert("Giá trị độ phải nằm trong khoảng 0-360");
+                return false;
+            }
+            if (minutes < 0 || minutes > 59) {
+                alert("Giá trị phút phải nằm trong khoảng 0-59");
+                return false;
+            }
+            if (seconds < 0 || seconds > 59) {
+                alert("Giá trị giây phải nằm trong khoảng 0-59");
+                return false;
+            }
+            return true;
+        }
+
+        function calculateFromP() {
+            // Lấy giá trị đầu vào
+            const P = parseFloat(document.getElementById('pValue').value);
+            const degrees = parseFloat(document.getElementById('pDegrees').value);
+            const minutes = parseFloat(document.getElementById('pMinutes').value);
+            const seconds = parseFloat(document.getElementById('pSeconds').value);
+            
+            // Kiểm tra giá trị nhập vào
+            if (isNaN(P) || P <= 0) {
+                alert("Giá trị P phải là số dương");
+                return;
+            }
+            
+            if (!validateAngleInput(degrees, minutes, seconds)) return;
+            
+            // Tính toán
+            const alphaRad = degreesToRadians(degrees, minutes, seconds);
+            const cosAlpha2 = Math.cos(alphaRad / 2);
+            const R = P / (1/cosAlpha2 - 1);
+            const T = R * Math.tan(alphaRad / 2);
+            const K = Math.PI * R * (degrees + minutes/60 + seconds/3600) / 180;
+            
+            // Hiển thị kết quả
+            document.getElementById('pRadius').textContent = R.toFixed(4);
+            document.getElementById('pTangent').textContent = T.toFixed(4);
+            document.getElementById('pCurveLength').textContent = K.toFixed(4);
+            
+            document.getElementById('pResult').style.display = 'block';
+        }
+
+        function calculateFromT() {
+            // Lấy giá trị đầu vào
+            const T = parseFloat(document.getElementById('tValue').value);
+            const degrees = parseFloat(document.getElementById('tDegrees').value);
+            const minutes = parseFloat(document.getElementById('tMinutes').value);
+            const seconds = parseFloat(document.getElementById('tSeconds').value);
+            
+            // Kiểm tra giá trị nhập vào
+            if (isNaN(T) || T <= 0) {
+                alert("Giá trị T phải là số dương");
+                return;
+            }
+            
+            if (!validateAngleInput(degrees, minutes, seconds)) return;
+            
+            // Tính toán
+            const alphaRad = degreesToRadians(degrees, minutes, seconds);
+            const tanAlpha2 = Math.tan(alphaRad / 2);
+            const R = T / tanAlpha2;
+            const cosAlpha2 = Math.cos(alphaRad / 2);
+            const P = R * (1/cosAlpha2 - 1);
+            const K = Math.PI * R * (degrees + minutes/60 + seconds/3600) / 180;
+            
+            // Hiển thị kết quả
+            document.getElementById('tRadius').textContent = R.toFixed(4);
+            document.getElementById('tPolar').textContent = P.toFixed(4);
+            document.getElementById('tCurveLength').textContent = K.toFixed(4);
+            
+            document.getElementById('tResult').style.display = 'block';
+        }
+
+        function calculateFromR() {
+            // Lấy giá trị đầu vào
+            const R = parseFloat(document.getElementById('rValue').value);
+            const degrees = parseFloat(document.getElementById('rDegrees').value);
+            const minutes = parseFloat(document.getElementById('rMinutes').value);
+            const seconds = parseFloat(document.getElementById('rSeconds').value);
+            
+            // Kiểm tra giá trị nhập vào
+            if (isNaN(R) || R <= 0) {
+                alert("Giá trị R phải là số dương");
+                return;
+            }
+            
+            if (!validateAngleInput(degrees, minutes, seconds)) return;
+            
+            // Tính toán
+            const alphaRad = degreesToRadians(degrees, minutes, seconds);
+            const tanAlpha2 = Math.tan(alphaRad / 2);
+            const cosAlpha2 = Math.cos(alphaRad / 2);
+            const P = R * (1/cosAlpha2 - 1);
+            const T = R * tanAlpha2;
+            const K = Math.PI * R * (degrees + minutes/60 + seconds/3600) / 180;
+            
+            // Hiển thị kết quả
+            document.getElementById('rPolar').textContent = P.toFixed(4);
+            document.getElementById('rTangent').textContent = T.toFixed(4);
+            document.getElementById('rCurveLength').textContent = K.toFixed(4);
+            
+            document.getElementById('rResult').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
