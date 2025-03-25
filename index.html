@@ -132,7 +132,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>TÍNH TOÁN THÔNG SỐ ĐƯỜNG CONG AV</h1>
+        <h1>TÍNH TOÁN THÔNG SỐ ĐƯỜNG CONG </h1>
         
         <div class="tab">
             <button class="tablinks active" onclick="openTab(event, 'tabP')">Tính từ P</button>
@@ -260,7 +260,42 @@
             </div>
         </div>
     </div>
-
+ <div class="guide">
+            <h3>HƯỚNG DẪN SỬ DỤNG</h3>
+            <ol>
+                <li><strong>Nhập bán kính R</strong>: Giá trị số dương (đơn vị mét)</li>
+                <li><strong>Nhập góc α</strong>:
+                    <ul>
+                        <li>Độ: từ 0 đến 359°</li>
+                        <li>Phút: từ 0 đến 59'</li>
+                        <li>Giây: từ 0 đến 59"</li>
+                    </ul>
+                </li>
+                <li><strong>Nhấn nút "TÍNH TOÁN"</strong> để xem kết quả</li>
+                <li><strong>Kết quả</strong> sẽ hiển thị 3 thông số chính:
+                    <ul>
+                        <li>Phân cự P (m)</li>
+                        <li>Chiều dài tiếp tuyến T (m)</li>
+                        <li>Chiều dài đường cong K (m)</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <h3>CÔNG THỨC TÍNH TOÁN</h3>
+            <ul>
+                <li><strong>Phân cự P</strong> = R × (1/cos(α/2) - 1)</li>
+                <li><strong>Tiếp tuyến T</strong> = R × tan(α/2)</li>
+                <li><strong>Đường cong K</strong> = (π × R × α) / 180</li>
+            </ul>
+            
+            <h3>LƯU Ý</h3>
+            <ul>
+                <li>Góc α phải nhỏ hơn 180° để kết quả có ý nghĩa</li>
+                <li>Bán kính R càng lớn thì đường cong càng thoải</li>
+                <li>Có thể nhập giá trị 0 cho phút/giây nếu chỉ có độ</li>
+            </ul>
+        </div>
+    </div>
     <footer>
         Create by HT Pro | 26.03.2025
     </footer>
