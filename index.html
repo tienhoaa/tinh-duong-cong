@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tính Toán Đường Cong ver1.1</title>
+    <title>Tính Toán Đường Cong AV ver1.1</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,6 +11,10 @@
             margin: 0;
             padding: 20px;
             background-color: #f5f5f5;
+            background-image: url('https://imgur.com/a/2JWf078');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center; 
         }
         .container {
             max-width: 800px;
@@ -217,9 +221,13 @@
             <button onclick="calculateFromT()">Tính Toán</button>
             
             <div class="angle-info">
-                <strong>Công thức tính góc α:</strong><br>
+                <strong>HƯỚNG DẪN SỬ DỤNG</strong><br>
+                - Góc α: góc chắn cung của tim tuyến tại đỉnh<br>
                 - Nếu 0° ≤ góc quay máy &lt; 180°: α = 180° - góc quay máy<br>
-                - Nếu 180° &lt; góc quay máy ≤ 360°: α = góc quay máy - 180°
+                - Nếu 180° &lt; góc quay máy ≤ 360°: α = góc quay máy - 180°<br>
+                - Phân cự P = R × (1/cos(α/2) - 1)<br>
+                - Tiếp tuyến T = R × tan(α/2)<br>
+                - Đường cong K = (π × R × α) / 180
             </div>
             
             <div id="tResult" class="result">
@@ -271,9 +279,13 @@
             <button onclick="calculateFromR()">Tính Toán</button>
             
             <div class="angle-info">
-                <strong>Công thức tính góc α:</strong><br>
+             <strong>HƯỚNG DẪN SỬ DỤNG</strong><br>
+                - Góc α: góc chắn cung của tim tuyến tại đỉnh<br>
                 - Nếu 0° ≤ góc quay máy &lt; 180°: α = 180° - góc quay máy<br>
-                - Nếu 180° &lt; góc quay máy ≤ 360°: α = góc quay máy - 180°
+                - Nếu 180° &lt; góc quay máy ≤ 360°: α = góc quay máy - 180°<br>
+                - Phân cự P = R × (1/cos(α/2) - 1)<br>
+                - Tiếp tuyến T = R × tan(α/2)<br>
+                - Đường cong K = (π × R × α) / 180
             </div>
             
             <div id="rResult" class="result">
