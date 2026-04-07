@@ -3,47 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>AV Curve Pro v2.5</title>
+    <title>AV Curve Pro v2.6</title>
     <style>
         :root { --primary: #00e676; --bg: #121212; --card: #1e1e1e; --text: #e0e0e0; --accent: #ffeb3b; --border: #333; }
         html, body { touch-action: pan-y; overflow-x: hidden; margin: 0; padding: 10px; background-color: var(--bg); color: var(--text); font-family: -apple-system, system-ui, sans-serif; display: flex; justify-content: center; }
-        .container { width: 100%; max-width: 500px; background-color: var(--card); border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); overflow: hidden; border: 1px solid var(--border); }
+        .container { width: 100%; max-width: 500px; background-color: var(--card); border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid var(--border); overflow: hidden; }
         h1 { background: linear-gradient(135deg, #1b5e20, #00e676); color: white; margin: 0; padding: 15px; font-size: 1rem; text-align: center; text-transform: uppercase; }
         .tab { display: flex; background-color: #252525; padding: 4px; border-bottom: 1px solid #333; }
         .tab button { flex: 1; padding: 12px 5px; border: none; background: none; color: #888; font-weight: bold; cursor: pointer; border-radius: 8px; font-size: 0.75rem; }
         .tab button.active { background-color: var(--primary); color: #000; }
-        .tabcontent { display: none; padding: 15px; animation: fadeIn 0.3s ease; }
+        .tabcontent { display: none; padding: 15px; animation: fadeIn 0.2s ease; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .input-box { background: #252525; padding: 12px; border-radius: 10px; margin-bottom: 12px; border: 1px solid var(--border); }
         label { display: block; margin-bottom: 6px; color: var(--primary); font-size: 0.8rem; font-weight: bold; }
-        input[type="number"] { width: 100%; padding: 10px; box-sizing: border-box; background: #121212; border: 1px solid #444; color: white; border-radius: 6px; font-size: 1.1rem; outline: none; }
+        input[type="number"], select { width: 100%; padding: 10px; box-sizing: border-box; background: #121212; border: 1px solid #444; color: white; border-radius: 6px; font-size: 1.1rem; outline: none; }
         .angle-row { display: flex; gap: 8px; }
         .angle-field { flex: 1; position: relative; }
         .angle-field span { position: absolute; right: 8px; top: 10px; color: #666; font-size: 0.8rem; }
         .btn-calc { width: 100%; padding: 16px; background: var(--primary); border: none; border-radius: 10px; color: #000; font-weight: bold; font-size: 0.95rem; cursor: pointer; margin-bottom: 10px; }
-        .info-panel { background: #333; border-radius: 8px; padding: 10px; margin-bottom: 15px; border-left: 4px solid var(--accent); font-size: 0.85rem; }
         .result-card { margin-top: 15px; display: none; border-left: 4px solid var(--primary); background: #252525; padding: 12px; border-radius: 4px 10px 10px 4px; }
         table { width: 100%; border-collapse: collapse; }
         td { padding: 10px 4px; border-bottom: 1px solid #333; font-size: 0.9rem; }
         .val { text-align: right; font-weight: bold; color: var(--primary); font-family: monospace; font-size: 1.1rem; }
         .highlight { color: var(--accent) !important; font-size: 1.1rem; }
         .formula-box { margin-top: 15px; background: #1a1a1a; border: 1px dashed #555; border-radius: 8px; padding: 12px; font-size: 0.75rem; color: #aaa; line-height: 1.5; }
-        .formula-box b { color: var(--accent); }
-        .diagram { background: #252525; border-radius: 10px; padding: 10px; margin-top: 10px; text-align: center; border: 1px solid #333; }
+        .diagram { background: #252525; border-radius: 10px; padding: 10px; margin-top: 10px; border: 1px solid #333; text-align: center; }
         footer { text-align: center; padding: 15px; font-size: 0.7rem; color: #555; }
-        .back-link { display: inline-block; margin-top: 10px; color: #666; text-decoration: underline; }
+        .back-link { color: #666; text-decoration: underline; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>AV Curve Pro <span style="font-size: 0.7rem; opacity: 0.7;">VER 2.5</span></h1>
+    <h1>AV Curve Pro <span style="font-size: 0.7rem; opacity: 0.7;">VER 2.6</span></h1>
     
     <div class="tab">
-        <button id="btnP" class="tablinks active" onclick="openTab(event, 'tabP')">BIẾT P</button>
-        <button id="btnT" class="tablinks" onclick="openTab(event, 'tabT')">BIẾT T</button>
-        <button id="btnR" class="tablinks" onclick="openTab(event, 'tabR')">BIẾT R</button>
-        <button id="btnD" class="tablinks" onclick="openTab(event, 'tabD')" style="color: var(--accent);">CẮM CỌC (BETA)</button>
+        <button class="tablinks active" onclick="openTab(event, 'tabP')">BIẾT P</button>
+        <button class="tablinks" onclick="openTab(event, 'tabT')">BIẾT T</button>
+        <button class="tablinks" onclick="openTab(event, 'tabR')">BIẾT R</button>
+        <button class="tablinks" onclick="openTab(event, 'tabD')" style="color: var(--accent);">CẮM CỌC</button>
     </div>
 
     <div id="tabP" class="tabcontent" style="display: block;">
@@ -75,7 +73,7 @@
     </div>
 
     <div id="tabR" class="tabcontent">
-        <div class="input-box"><label>Giá trị R (m)</label><input type="number" id="inputR" step="0.001" oninput="syncAngle('R')"></div>
+        <div class="input-box"><label>Giá trị R (m)</label><input type="number" id="inputR" step="0.001" value="250.000" oninput="syncAngle('R')"></div>
         <div class="input-box"><label>Góc đỉnh D</label>
             <div class="angle-row">
                 <div class="angle-field"><input type="number" id="rd" value="117" oninput="syncAngle('R')"><span>°</span></div>
@@ -85,39 +83,46 @@
         </div>
         <button class="btn-calc" onclick="runCalc('R')">TÍNH THÔNG SỐ</button>
         <div id="resR" class="result-card"></div>
-        <div class="formula-box"><b>KIỂM TRA:</b> α=|180-D|; T=R.tan(α/2); P=R.[(1/cos(α/2))-1]</div>
+        <div class="formula-box"><b>KIỂM TRA:</b> α=|180-D|; T=R.tan(α/2); K=(π.R.α)/180</div>
     </div>
 
     <div id="tabD" class="tabcontent">
-        <div class="info-panel">R = <span id="infoR">---</span> | T = <span id="infoT">---</span> | K = <span id="infoK">---</span></div>
         <div class="diagram">
-            <svg width="240" height="120" viewBox="0 0 240 120">
-                <line x1="30" y1="110" x2="120" y2="20" stroke="#555" stroke-width="2" />
-                <line id="lineDTC" x1="120" y1="20" x2="210" y2="110" stroke="#555" stroke-width="2" stroke-dasharray="3,3" />
-                <path d="M 55 85 Q 120 30 185 85" fill="none" stroke="#00e676" stroke-width="3" />
-                <text x="120" y="12" fill="white" font-size="9" text-anchor="middle">Máy D (Ngắm TD=0°)</text>
-                <g id="groupTD"><circle cx="85" cy="65" r="3" fill="#ffeb3b"/><line x1="120" y1="20" x2="85" y2="65" stroke="#ffeb3b" stroke-dasharray="3"/></g>
-                <g id="groupTC" style="display:none;"><circle cx="155" cy="65" r="3" fill="#ffeb3b"/><line x1="120" y1="20" x2="155" y2="65" stroke="#ffeb3b" stroke-dasharray="3"/></g>
+            <svg width="260" height="150" viewBox="0 0 260 150">
+                <line x1="40" y1="130" x2="130" y2="30" stroke="#888" stroke-width="2" />
+                <line x1="130" y1="30" x2="220" y2="130" stroke="#888" stroke-width="2" id="lineDTC" stroke-dasharray="4,2"/>
+                <path d="M 65 105 Q 130 40 195 105" fill="none" stroke="#00e676" stroke-width="4" />
+                <circle cx="130" cy="30" r="4" fill="white" />
+                <text x="130" y="20" fill="white" font-size="11" text-anchor="middle" font-weight="bold">Đỉnh D (Máy)</text>
+                <text x="35" y="145" fill="#aaa" font-size="10">TD (0°)</text>
+                <text x="225" y="145" fill="#aaa" font-size="10">TC</text>
+                
+                <g id="drawL">
+                    <line id="svgL" x1="130" y1="30" x2="95" y2="78" stroke="#ffeb3b" stroke-width="1.5" stroke-dasharray="3,3" />
+                    <text x="105" y="55" fill="#ffeb3b" font-size="10" font-weight="bold">L</text>
+                    <line id="svgY" x1="95" y1="78" x2="75" y2="58" stroke="#f44336" stroke-width="2" />
+                    <text x="75" y="75" fill="#f44336" font-size="10" font-weight="bold">y</text>
+                    <circle id="svgCoc" cx="95" cy="78" r="4" fill="#ffeb3b" />
+                </g>
             </svg>
         </div>
         <div class="input-box" style="margin-top:10px;">
-            <select id="halfSide" onchange="updateDiagramV25()"><option value="TD">Nửa gần Tiếp đầu (TD)</option><option value="TC">Nửa gần Tiếp cuối (TC)</option></select>
+            <select id="halfSide" onchange="updateDiagramV26()"><option value="TD">Bố trí từ phía Tiếp đầu (TD)</option><option value="TC">Bố trí từ phía Tiếp cuối (TC)</option></select>
         </div>
-        <div class="input-box"><label>Khoảng cách x (D đến cọc)</label><input type="number" id="inputX" step="0.001" placeholder="x < T"></div>
-        <button class="btn-calc" style="background: var(--accent); color: #000;" onclick="calcStakingV25()">TÍNH TỌA ĐỘ BẮN ĐIỂM</button>
+        <div class="input-box"><label>Khoảng cách x (Đo từ D về TD hoặc TC)</label><input type="number" id="inputX" step="0.001" placeholder="Nhập x < T"></div>
+        <button class="btn-calc" style="background: var(--accent); color: #000;" onclick="calcStakingV26()">TÍNH TỌA ĐỘ BẮN ĐIỂM</button>
         <div id="resDBox" class="result-card"></div>
     </div>
 
-    <footer>CREATE BY KIDLC | 04.2026 | <a href="index-old.html" class="back-link">Bản cũ</a></footer>
+    <footer>CREATE BY KIDLC | 2026 | <a href="index-old.html" class="back-link">Bản cũ v1.0</a></footer>
 </div>
 
 <script>
-    // Chống Zoom
+    // Chống Zoom triệt để
     document.addEventListener('touchstart', e => { if (e.touches.length > 1) e.preventDefault(); }, { passive: false });
     
-    let state = { R: 0, T: 0, K: 0, P: 0, machineAngle: 117, alpha: 63 };
+    let state = { R: 0, T: 0, K: 0, P: 0, machineAngle: 117 };
 
-    // Đồng bộ góc giữa các Tab khi nhập liệu
     function syncAngle(fromTab) {
         let d = document.getElementById(fromTab.toLowerCase() + 'd').value;
         let m = document.getElementById(fromTab.toLowerCase() + 'm').value;
@@ -137,11 +142,6 @@
         for (i = 0; i < tablinks.length; i++) tablinks[i].className = tablinks[i].className.replace(" active", "");
         document.getElementById(tabName).style.display = "block";
         evt.currentTarget.className += " active";
-        if(tabName === 'tabD') {
-            document.getElementById('infoR').innerText = state.R.toFixed(3);
-            document.getElementById('infoT').innerText = state.T.toFixed(3);
-            document.getElementById('infoK').innerText = state.K.toFixed(3);
-        }
     }
 
     function runCalc(mode) {
@@ -167,16 +167,13 @@
             P = R * (1/Math.cos(a2Rad) - 1);
         }
         K = (Math.PI * R * alpha) / 180;
-        
-        state = { R, T, K, P, machineAngle: angle, alpha };
+        state = { R, T, K, P, machineAngle: angle };
 
-        // ĐIỀN NGƯỢC DỮ LIỆU VÀO CÁC Ô NHẬP LIỆU CỦA TAB KHÁC
-        document.getElementById('inputP').value = R ? P.toFixed(3) : "";
-        document.getElementById('inputT').value = R ? T.toFixed(3) : "";
-        document.getElementById('inputR').value = R ? R.toFixed(3) : "";
+        document.getElementById('inputP').value = P.toFixed(3);
+        document.getElementById('inputT').value = T.toFixed(3);
+        document.getElementById('inputR').value = R.toFixed(3);
 
-        // HIỂN THỊ KẾT QUẢ CHO TẤT CẢ CÁC TAB
-        let htmlRes = `<table>
+        let resTable = `<table>
             <tr><td>Bán kính R</td><td class="val">${R.toFixed(3)}</td></tr>
             <tr><td>Tiếp tuyến T</td><td class="val">${T.toFixed(3)}</td></tr>
             <tr><td>Phân cự P</td><td class="val">${P.toFixed(3)}</td></tr>
@@ -184,36 +181,47 @@
             <tr><td>Góc chuyển α</td><td class="val">${alpha.toFixed(3)}°</td></tr>
         </table>`;
         
-        document.getElementById('resP').innerHTML = htmlRes; document.getElementById('resP').style.display = 'block';
-        document.getElementById('resT').innerHTML = htmlRes; document.getElementById('resT').style.display = 'block';
-        document.getElementById('resR').innerHTML = htmlRes; document.getElementById('resR').style.display = 'block';
+        ['resP','resT','resR'].forEach(id => {
+            document.getElementById(id).innerHTML = resTable;
+            document.getElementById(id).style.display = 'block';
+        });
     }
 
-    function updateDiagramV25() {
+    function updateDiagramV26() {
         let side = document.getElementById('halfSide').value;
-        document.getElementById('groupTD').style.display = (side === 'TD') ? 'block' : 'none';
-        document.getElementById('groupTC').style.display = (side === 'TC') ? 'block' : 'none';
-        document.getElementById('lineDTC').setAttribute("stroke-dasharray", (side === 'TD') ? "3,3" : "0");
+        let lineDTC = document.getElementById('lineDTC');
+        let drawL = document.getElementById('drawL');
+        if(side === 'TD') {
+            lineDTC.setAttribute("stroke-dasharray", "4,2");
+            drawL.setAttribute("transform", "translate(0,0)");
+        } else {
+            lineDTC.setAttribute("stroke-dasharray", "0");
+            drawL.setAttribute("transform", "scale(-1, 1) translate(-260, 0)");
+        }
     }
 
-    function calcStakingV25() {
-        if (state.R <= 0) { alert("Hãy tính thông số ở các Tab trước!"); return; }
+    function calcStakingV26() {
+        if (state.R <= 0) { alert("Hãy tính thông số (P,T,R) trước!"); return; }
         let x = parseFloat(document.getElementById('inputX').value);
-        if (isNaN(x) || x >= state.T) { alert("Lỗi: x phải < T"); return; }
+        if (isNaN(x) || x >= state.T) { alert("Lỗi: x phải nhỏ hơn T (" + state.T.toFixed(3) + ")"); return; }
+        
         let side = document.getElementById('halfSide').value;
         let xtd = state.T - x;
         let y = state.R - Math.sqrt(Math.pow(state.R, 2) - Math.pow(xtd, 2));
         let L = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
         let bDegLẻ = Math.atan(y / x) * 180 / Math.PI;
         let finalBeta = (side === 'TD') ? bDegLẻ : (state.machineAngle - bDegLẻ);
+
         let bD = Math.floor(finalBeta), bM = Math.floor((finalBeta - bD) * 60), bS = Math.round(((finalBeta - bD) * 60 - bM) * 60);
         if(bS == 60) { bM++; bS = 0; }
-        document.getElementById('resDBox').style.display = 'block';
+
         document.getElementById('resDBox').innerHTML = `<table>
             <tr><td>GÓC QUAY (β)</td><td class="val highlight">${bD}° ${bM}' ${bS}"</td></tr>
             <tr><td>TIA NGẮM (L)</td><td class="val highlight">${L.toFixed(3)} m</td></tr>
             <tr><td>DỊCH NGANG (y)</td><td class="val highlight">${y.toFixed(3)} m</td></tr>
+            <tr style="border:none;"><td colspan="2" style="font-size:0.7rem; color:#888; text-align:center; padding-top:10px;">(Ngắm cọc chuẩn TD/TC set 0°0'0")</td></tr>
         </table>`;
+        document.getElementById('resDBox').style.display = 'block';
     }
 </script>
 </body>
