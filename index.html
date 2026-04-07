@@ -80,12 +80,12 @@
 
     <div id="tabP" class="tabcontent" style="display: block;">
         <div class="input-box"><label>Giá trị P (m)</label><input type="number" id="inputP" step="0.001" value="0.330"></div>
-        <div class="input-box"><label>Góc đỉnh D</label><div class="angle-row"><div class="angle-field"><input type="number" id="pd" value="117"><span>°</span></div><div class="angle-field"><input type="number" id="pm" value="0"><span>'</span></div><div class="angle-field"><input type="number" id="ps" value="0"><span>"</span></div></div></div>
+        <div class="input-box"><label>Góc quay máy</label><div class="angle-row"><div class="angle-field"><input type="number" id="pd" value="117"><span>°</span></div><div class="angle-field"><input type="number" id="pm" value="0"><span>'</span></div><div class="angle-field"><input type="number" id="ps" value="0"><span>"</span></div></div></div>
         <button class="btn-calc" onclick="runCalc('P')">TÍNH THÔNG SỐ</button>
         <div id="resP" class="result-card"></div>
         <div class="formula-box">
             <b>CÔNG THỨC KIỂM TRA:</b><br>
-            α = |180 - Góc Đỉnh|<br>
+            α = |180 - Góc quay máy|<br>
             R = P / [ (1/cos(α/2)) - 1 ]<br>
             T = R * tan(α/2) | K = (π.R.α) / 180
         </div>
@@ -93,12 +93,12 @@
 
     <div id="tabT" class="tabcontent">
         <div class="input-box"><label>Giá trị T (m)</label><input type="number" id="inputT" step="0.001"></div>
-        <div class="input-box"><label>Góc đỉnh D</label><div class="angle-row"><div class="angle-field"><input type="number" id="td" value="117"><span>°</span></div><div class="angle-field"><input type="number" id="tm" value="0"><span>'</span></div><div class="angle-field"><input type="number" id="ts" value="0"><span>"</span></div></div></div>
+        <div class="input-box"><label>Góc quay máy</label><div class="angle-row"><div class="angle-field"><input type="number" id="td" value="117"><span>°</span></div><div class="angle-field"><input type="number" id="tm" value="0"><span>'</span></div><div class="angle-field"><input type="number" id="ts" value="0"><span>"</span></div></div></div>
         <button class="btn-calc" onclick="runCalc('T')">TÍNH THÔNG SỐ</button>
         <div id="resT" class="result-card"></div>
         <div class="formula-box">
             <b>CÔNG THỨC KIỂM TRA:</b><br>
-            α = |180 - Góc Đỉnh|<br>
+            α = |180 - Góc quay máy|<br>
             R = T / tan(α/2)<br>
             P = R * [ (1/cos(α/2)) - 1 ] | K = (π.R.α) / 180
         </div>
@@ -106,12 +106,12 @@
 
     <div id="tabR" class="tabcontent">
         <div class="input-box"><label>Giá trị R (m)</label><input type="number" id="inputR" step="0.001" value="250"></div>
-        <div class="input-box"><label>Góc đỉnh D</label><div class="angle-row"><div class="angle-field"><input type="number" id="rd" value="117"><span>°</span></div><div class="angle-field"><input type="number" id="rm" value="0"><span>'</span></div><div class="angle-field"><input type="number" id="rs" value="0"><span>"</span></div></div></div>
+        <div class="input-box"><label>Góc quay máy</label><div class="angle-row"><div class="angle-field"><input type="number" id="rd" value="117"><span>°</span></div><div class="angle-field"><input type="number" id="rm" value="0"><span>'</span></div><div class="angle-field"><input type="number" id="rs" value="0"><span>"</span></div></div></div>
         <button class="btn-calc" onclick="runCalc('R')">TÍNH THÔNG SỐ</button>
         <div id="resR" class="result-card"></div>
         <div class="formula-box">
             <b>CÔNG THỨC KIỂM TRA:</b><br>
-            α = |180 - Góc Đỉnh|<br>
+            α = |180 - Góc quay máy|<br>
             T = R * tan(α/2)<br>
             P = R * [ (1/cos(α/2)) - 1 ] | K = (π.R.α) / 180
         </div>
@@ -164,7 +164,7 @@
             3. <b>L = √(x² + y²)</b> (Cự ly bắn máy)<br>
             4. β_lẻ = arctan(y/x)<br>
             - Nếu nửa TD: Góc quay = β_lẻ<br>
-            - Nếu nửa TC: Góc quay = Góc Đỉnh - β_lẻ
+            - Nếu nửa TC: Góc quay = Góc quay máy - β_lẻ
         </div>
     </div>
 
